@@ -5,8 +5,9 @@ public class ServicioEstandar extends Servicio {
 	private Trabajador trabajador;
 	
 	//Constructor
-	public ServicioEstandar(Double montoFijo, Trabajador trabajador) {
+	public ServicioEstandar(Double montoFijo, Trabajador trabajador, Oficio oficio) {
 		super();
+		super.setOficio(oficio);
 		this.montoFijo = montoFijo;
 		this.trabajador = trabajador;
 	}
@@ -24,7 +25,8 @@ public class ServicioEstandar extends Servicio {
 	public void setTrabajador(Trabajador trabajador) {
 		this.trabajador = trabajador;
 	}
-
+	
+	//Methods
 	@Override
 	public double costo() {
 		return montoFijo + (montoFijo * trabajador.getPorcentajeComision());

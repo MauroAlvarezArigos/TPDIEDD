@@ -1,5 +1,7 @@
 package guia05.domain;
 
+import java.util.ArrayList;
+
 public class Trabajador {
 	
 	private Oficio oficio;
@@ -7,6 +9,7 @@ public class Trabajador {
 	private String email;
 	private Double costoXHora;
 	private Double porcentajeComision;
+	private ArrayList<Trabajo> trabajosAsignados; 
 	
 	//Constructor
 	public Trabajador(Oficio oficio, String nombre, String email, Double costoXHora, Double porcentajeComision) {
@@ -16,6 +19,7 @@ public class Trabajador {
 		this.email = email;
 		this.costoXHora = costoXHora;
 		this.porcentajeComision = porcentajeComision;
+		this.trabajosAsignados = new ArrayList<Trabajo>();
 	}
 	
 	//Getters and Setters
@@ -43,6 +47,24 @@ public class Trabajador {
 	public void setPorcentajeComision(Double porcentajeComision) {
 		this.porcentajeComision = porcentajeComision;
 	}
+	
+	//Methods
+	public void AsignarTrabajo(Trabajo unTrabajo) {
+		try {
+			if(this.verificarOficio(unTrabajo.getServicio())) { // and Don't have work) {    
+                trabajosAsignados.add(unTrabajo);
+			}                                                      
+		}
+		catch(OficioNoCoincideException e) {
+			e.printStackTrace();
+		}
+	}
 
+	private Boolean verificarOficio(Servicio unServicio) throws OficioNoCoincideException{
+		if((unServicio.getOficio()).equals(this.oficio)) {
+			return true;
+		}		
+		else throw new OficioNoCoincideException("El trabajador es "+ (unServicio.getOficio()).getNombre());
+	}
 	
 }

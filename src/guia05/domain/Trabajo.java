@@ -42,7 +42,8 @@ public class Trabajo implements Contratable {
 	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-
+	
+	//Methods
 	@Override
 	public Double costo() {
 		if(urgente) {

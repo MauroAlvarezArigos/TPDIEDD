@@ -18,6 +18,9 @@ public class Alquiler implements Contratable {
 		this.fechaEntrega = fechaEntrega;
 		this.fechaDevolucion = null;
 	}
+	public Alquiler() {
+		super();
+	}
 	
 	//Getters and Setters
 	public Herramienta getHerramienta() {
@@ -45,6 +48,7 @@ public class Alquiler implements Contratable {
 		this.fechaDevolucion = fechaDevolucion;
 	}
 
+	//Methods
 	@Override
 	public Double costo() {
 		if(finalizado()) {
@@ -61,7 +65,6 @@ public class Alquiler implements Contratable {
 		return true;
 	}
 	
-	//Methods
 	public Boolean enMora() {
 		
 		if(fechaDevolucion == null) {
