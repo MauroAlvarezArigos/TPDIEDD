@@ -6,14 +6,16 @@ public class Trabajo implements Contratable {
 	private Trabajador trabajador;
 	private Servicio servicio;
 	private Boolean urgente;
+	private LocalDate fechaInicio;
 	private LocalDate fechaFin;
 	
 	//Constructor
-	public Trabajo(Trabajador trabajador, Servicio servicio, Boolean urgente, LocalDate fechaFin) {
+	public Trabajo(Trabajador trabajador, Servicio servicio, Boolean urgente, LocalDate fechaInicio) {
 		super();
 		this.trabajador = trabajador;
 		this.servicio = servicio;
 		this.urgente = urgente;
+		this.fechaInicio = fechaInicio;
 		this.fechaFin = null;
 	}
 	
@@ -35,6 +37,12 @@ public class Trabajo implements Contratable {
 	}
 	public void setUrgente(Boolean urgente) {
 		this.urgente = urgente;
+	}
+	public LocalDate getFechaInicio() {
+		return fechaInicio;
+	}
+	public void setFechaInicio(LocalDate fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 	public LocalDate getFechaFin() {
 		return fechaFin;

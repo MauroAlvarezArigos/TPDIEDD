@@ -1,6 +1,7 @@
 package guia05.domain;
 
 import java.util.ArrayList;
+import guia05.exceptions.AlquilerNoEntregadoException;
 
 public class Usuario {
 	private String email;

@@ -2,6 +2,9 @@ package guia05.domain;
 
 import java.util.ArrayList;
 
+import guia05.exceptions.AgendaOcupadaException;
+import guia05.exceptions.OficioNoCoincideException;
+
 public class Trabajador {
 	
 	private Oficio oficio;
@@ -51,15 +54,27 @@ public class Trabajador {
 	//Methods
 	public void AsignarTrabajo(Trabajo unTrabajo) {
 		try {
-			if(this.verificarOficio(unTrabajo.getServicio())) { // and Don't have work) {    
+			if(this.verificarOficio(unTrabajo.getServicio()) && this.verificarFecha(unTrabajo)) {    
                 trabajosAsignados.add(unTrabajo);
 			}                                                      
 		}
 		catch(OficioNoCoincideException e) {
 			e.printStackTrace();
 		}
+		catch(AgendaOcupadaException e) {
+			e.printStackTrace();
+		}
 	}
 
+	private Boolean verificarFecha(Trabajo unTrabajo) throws AgendaOcupadaException {
+		for(Trabajo t : trabajosAsignados) {
+			if(t.getFechaInicio().isEqual(unTrabajo.getFechaInicio())) {
+				throw new AgendaOcupadaException();
+			}
+		}
+		return true;
+	}
+	
 	private Boolean verificarOficio(Servicio unServicio) throws OficioNoCoincideException{
 		if((unServicio.getOficio()).equals(this.oficio)) {
 			return true;
